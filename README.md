@@ -16,3 +16,6 @@ Backend: Python, Django
 Frontend: HTML, CSS, Django Template Language (with optional Bootstrap)
 
 Database: SQLite 
+
+(02/05/2025)
+screenshort for updated version is not avalible now 
