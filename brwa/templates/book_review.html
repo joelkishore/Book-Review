@@ -10,6 +10,15 @@
 
 </head>
 <body>
+
+<!-- for messages -->
+
+{% if messages %}
+{% for message in messages %}
+<p>{{ message }}</p>
+{% endfor %}
+{% endif %}
+
     <div class="container my-5">
         <!-- Page Title -->
         <h1 class="text-center mb-4">Book Review</h1>

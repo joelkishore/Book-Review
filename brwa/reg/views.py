@@ -1,24 +1,38 @@
+from .models import *
+from .forms import *
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth import login ,logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from .models import *
-from .forms import *
 from django.contrib.auth.decorators import login_required
-
 from django.db.models import Avg
-from django.contrib import messages
-
-
+from django.core.paginator import Paginator
 
 
 def home(request):
     query = request.GET.get('q')
-    if query:
-        query = query.lower()
+    sort = request.GET.get('s')
     books = Book.objects.annotate(avg_rating=Avg('review__rating'))  # Add average ratings
+    
     if query:
         books = books.filter(title__icontains=query) | books.filter(author__icontains=query)
-    return render(request, 'home.html', {'content': books})
+    elif sort:  # Only filter by genre if 'sort' is provided
+        books = books.filter(genre__icontains=sort)
+    else:
+        pass
+    
+    paginator = Paginator(books, 4)  # Show 4 books per page.
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    genres = Book.objects.values_list('genre', flat=True).distinct()
+    con = {
+        'page_obj': page_obj,
+        'content': page_obj,
+        'books': books,
+        'genres': genres,
+    }
+    return render(request, 'home.html', con)
+
 
     # content = Book.objects.annotate(avg_rating=Avg('review__rating'))
     # return render(request,'home.html',{'content':content})
@@ -74,7 +88,7 @@ def book_detail(request, pk):
                 new_review.book = book
                 new_review.user = request.user
                 new_review.save()
-                messages.success(request, 'Review submitted.')
+
                 return redirect('book_detail', pk=book.pk)
         else:
             form = ReviewForm()
@@ -86,3 +100,9 @@ def book_detail(request, pk):
         'existing_review': existing_review, 'recommendations': recommendations
     }
     return render(request, 'book_review.html', context)
+
+# for profile 
+
+def profile_view(request):
+    reviews = Review.objects.filter(user=request.user)
+    return render(request, 'profile.html', {'reviews': reviews})
