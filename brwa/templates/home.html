@@ -87,20 +87,20 @@
                     <img src="{{ i.cover_image }}" class="card-img-top" alt="{{ i.title }}">
 
                     <div class="card-body">
-                        <!-- Book title and publication year -->
+
                         <h5 class="card-title">{{ i.title }} ({{ i.published_year }})</h5>
 
-                        <!-- Author name -->
+
                         <h6 class="card-subtitle mb-2 text-muted">{{ i.author }}</h6>
 
-                        <!-- Book genre and rating -->
+
                         <p class="card-text"><strong>Genre:</strong> {{ i.genre }}</p>
                         <p class="card-text"><strong>Rating:</strong> {{ i.avg_rating|default:"No ratings yet" }}</p>
 
                         <!-- Short description of the book -->
                         <p class="card-text">{{ i.description|truncatewords:15 }}</p>
 
-                        <!-- Link to view book details -->
+                        <!-- view book details -->
                         <a href="{% url 'book_detail' i.pk %}" class="btn btn-primary w-100">View Details</a>
                     </div>
                 </div>
@@ -112,7 +112,6 @@
     <!-- Footer Section -->
     <footer class="bg-light py-3 mt-4">
         <div class="container text-center">
-            <!-- Footer content -->
             <p class="mb-0">© 2025 The Otaku Zone. All rights reserved.</p>
         </div>
     </footer>

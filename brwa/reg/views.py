@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from django.contrib.auth import authenticate, login ,logout
+from django.contrib.auth import login ,logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import *
 from .forms import *
@@ -54,8 +54,10 @@ def register(request):
         form=UserCreationForm()
     return render(request,'register.html',{'form':form})
 
-#MUST LOGIN
+#MUST LOGIN TO WRITE REVIEW
 @login_required
+
+#book review and avg ratings ,recommendations
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)
