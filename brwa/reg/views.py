@@ -71,7 +71,7 @@ def register(request):
 #MUST LOGIN TO WRITE REVIEW
 @login_required
 
-#book review and avg ratings ,recommendations
+#book review , avg ratings ,recommendations
 
 def book_detail(request, pk):
     book = get_object_or_404(Book, pk=pk)

@@ -13,11 +13,11 @@
 
 <!-- for messages -->
 
-{% if messages %}
+<!-- {% if messages %}
 {% for message in messages %}
 <p>{{ message }}</p>
 {% endfor %}
-{% endif %}
+{% endif %} -->
 
     <div class="container my-5">
         <!-- Page Title -->
@@ -27,7 +27,7 @@
             <!-- Left Column: Book Details  -->
             <div class="col-lg-8 d-flex flex-column">
                 <!-- Book Card -->
-                <div class="card mb-4 mx-auto" style="width: 70%; overflow: hidden;">
+                <div class="card mb-4 mx-auto shadow-lg rounded-3 border-0" style="width: 70%; overflow: hidden;">
                     
                     <img src="{{ book.cover_image }}" class="card-img-top" alt="{{ book.title }}">
                     <div class="card-body">

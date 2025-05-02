@@ -99,7 +99,7 @@
             <!-- Loop to display content for each book -->
             {% for i in content %}
             <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="card h-90">
+                <div class="card h-90 shadow-lg rounded-3 border-0">
                     <!-- Book cover image -->
                     <img src="{{ i.cover_image }}" class="card-img-top" alt="{{ i.title }}">
 
@@ -123,7 +123,7 @@
 
         <!-- Pagination 4 card per page  -->
         <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
+            <ul class="pagination justify-content-center" style="margin-top: 20px;">
               {% if page_obj.has_previous %}
                 <li class="page-item">
                   <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
