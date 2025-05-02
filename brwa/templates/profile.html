@@ -28,7 +28,7 @@
         </div>
     </header>
     <div class="container mt-4">
-        <div class="row g-4">
+      <div class="row g-4">
             <h5 class="text-center"> Welcome {{user}}</h5>
             <!-- <h7 class="text-center"> These books are  reviewed </h7> -->
           {% if reviews %}
@@ -42,7 +42,7 @@
                     <h5 class="card-title">{{ review.book.title }}</h5>
                     <p class="card-text">{{ review.review }}</p>
                     <p class="card-text">
-                      {% for i in "12345"|slice:":review.rating" %}⭐{% endfor %}
+                      {{ review.rating }} Stars
                     </p>
                   </div>
                 </div>
@@ -52,6 +52,9 @@
             <p>The user has no reviews — go and explore the Otaku!</p>
           {% endif %}
         </div>
+        <form action="/" method="get" class="text-center mt-4">
+          <button type="submit" class="btn btn-primary">Back</button>
+      </form>
       </div>
       
     
